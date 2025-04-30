@@ -2,6 +2,7 @@ import ExampleModel from '../models/exampleModel.js';
 
 export const getExample = async (req, res) => {
   const examples = await ExampleModel.find();
+  console.log(examples);
   res.json(examples);
 };
 
