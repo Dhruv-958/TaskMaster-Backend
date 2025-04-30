@@ -2,17 +2,20 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import exampleRoute from './routes/exampleRoute.js';
 import dotenv from 'dotenv'
+import authRoutes from './routes/auth.js'
 dotenv.config()
 
 
 const app = express();
 const PORT = process.env.PORT;
 
+app.use(express.json());
 app.use(cors());
+
 app.use(bodyParser.json());
-app.use('/api', exampleRoute);
+
+app.use("/api/auth", authRoutes);
 
 mongoose.set('strictQuery', false)
 mongoose.connect(process.env.MONGO_URL)
