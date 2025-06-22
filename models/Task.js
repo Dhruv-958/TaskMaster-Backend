@@ -4,25 +4,33 @@ const taskSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    trim: true
+    trim: true, 
   },
-  description: {
+  description: {  
     type: String,
     required: true,
-    trim: true
+    trim: true,
+  },
+  timeTaken: {
+    type: Number,
+    required: true,
+    min: 0, 
   },
   score: {
     type: Number,
     required: true,
-    min: 0
+    min: 0,
+    max: 100, 
   },
-  duration: {
-    type: Number,
-    min: 0
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
   }
-}, { timestamps: true });
+});
+
+export default mongoose.model('Task', taskSchema);

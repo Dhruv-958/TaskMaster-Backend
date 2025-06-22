@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv'
 import authRoutes from './routes/auth.js'
+import taskRoutes from './routes/task.js';
+import userRoutes from './routes/user.js';
 dotenv.config()
 
 
@@ -16,6 +18,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/task", taskRoutes);
+app.use("/api/user", userRoutes);
 
 mongoose.set('strictQuery', false)
 mongoose.connect(process.env.MONGO_URL)
