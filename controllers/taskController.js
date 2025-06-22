@@ -3,6 +3,8 @@ import Task from '../models/Task.js';
 import User from '../models/User.js';
 import mongoose from 'mongoose';
 import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const createTask = async (req, res) => {
   try {
@@ -27,7 +29,7 @@ export const createTask = async (req, res) => {
     // 2. Score task via ML model
     let score = 0;
     try {
-      const response = await axios.post('http://127.0.0.1:8000/score', {
+      const response = await axios.post(process.env.ML_SERVICE_URL, {
         title,
         description,
         timeTaken,
