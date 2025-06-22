@@ -32,7 +32,7 @@ export const signin = async (req, res) => {
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d"
+      expiresIn: "1h"
     });
 
     res.status(200).json({ token, user: { id: user._id, name: user.name } });
